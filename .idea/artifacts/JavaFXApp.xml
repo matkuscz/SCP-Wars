@@ -1,0 +1,22 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="JavaFXApp">
+    <output-path>$PROJECT_DIR$/out/artifacts/JavaFXApp</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="cz.kamproductions.scp_wars.Main" />
+        <option name="description" value="" />
+        <option name="height" value="726" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="title" value="SPC-WARS" />
+        <option name="vendor" value="Kozlik a Matka Productions" />
+        <option name="version" value="0.0.1" />
+        <option name="width" value="1024" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="JavaFXApp.jar">
+        <element id="module-output" name="SCP-Wars" />
+      </element>
+    </root>
+  </artifact>
+</component>
