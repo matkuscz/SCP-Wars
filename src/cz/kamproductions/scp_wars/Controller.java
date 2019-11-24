@@ -8,6 +8,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 public class Controller {
     Player player = new Player("MTK");
     Game game = new Game(player);
@@ -27,9 +30,12 @@ public class Controller {
     @FXML
     Button buildingManagementButton;
 
+    private ResourceBundle bundle;
 
     @FXML
-    private void initialize() {
+    private void initialize(URL location, ResourceBundle resources) {
+        bundle = resources;
+
         aboutMenuItem.setOnAction(event -> {
             AboutGameCustomDialog aboutGameCustomDialog = new AboutGameCustomDialog(null);
             aboutGameCustomDialog.showAndWait();

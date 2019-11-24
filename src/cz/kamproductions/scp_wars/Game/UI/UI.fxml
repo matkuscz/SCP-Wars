@@ -15,19 +15,15 @@
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
-        <Menu mnemonicParsing="false" text="Game">
+        <Menu mnemonicParsing="false" text="%MenuBar.GameMenu.Name">
           <items>
-            <MenuItem mnemonicParsing="false" text="New" />
-            <Menu mnemonicParsing="false" text="Open Recent" />
+            <MenuItem mnemonicParsing="false" text="%MenuBar.GameMenu.New.Name" />
+            <MenuItem mnemonicParsing="false" text="%MenuBar.GameMenu.Load.Name" />
+            <MenuItem mnemonicParsing="false" text="%MenuBar.GameMenu.Save.Name" />
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Open…" />
-            <MenuItem mnemonicParsing="false" text="Close" />
-            <MenuItem mnemonicParsing="false" text="Save" />
-            <MenuItem mnemonicParsing="false" text="Save As…" />
+            <MenuItem mnemonicParsing="false" text="%MenuBar.GameMenu.Preferences.Name" />
             <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Preferences…" />
-            <SeparatorMenuItem mnemonicParsing="false" />
-            <MenuItem mnemonicParsing="false" text="Quit" />
+            <MenuItem mnemonicParsing="false" text="%MenuBar.GameMenu.Quit.Name" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Help">

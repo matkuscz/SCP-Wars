@@ -30,6 +30,17 @@ public class BuildingManagementDialogController extends Stage implements Initial
     @FXML
     private Button closeButton;
 
+    @FXML
+    private Button rentButton;
+
+    @FXML
+    private Button buyButton;
+
+    @FXML
+    private Button marketReseachButton;
+
+
+
     public BuildingManagementDialogController(Parent parent) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/cz/kamproductions/scp_wars/Game/UI/BuildingManagement/BuildingManagement-Base.fxml"));
         fxmlLoader.setController(this);
@@ -91,7 +102,49 @@ public class BuildingManagementDialogController extends Stage implements Initial
         buildingsForSellTableView.setItems(buildingsForSellList);
 
 
-        buildingManagementBorderPane.setRight(buildingsForSellTableView);
+        // Pridani seznamu budov do Layoutu
+
+        VBox leftVbox = new VBox();
+        VBox rightVBox = new VBox();
+
+        leftVbox.setSpacing(10);
+        rightVBox.setSpacing(10);
+
+        leftVbox.setFillWidth(true);
+        rightVBox.setFillWidth(false);
+
+        Label currentBuildingLabel = new Label("Current building");
+        leftVbox.getChildren().clear();
+        leftVbox.getChildren().addAll(currentBuildingLabel, currentBuildingTableView);
+
+        Label buildingsForSaleLabel = new Label("Buildings for sale");
+        rightVBox.getChildren().clear();
+        rightVBox.getChildren().addAll(buildingsForSaleLabel, buildingsForSellTableView);
+
+        buildingManagementBorderPane.setLeft(leftVbox);
+        buildingManagementBorderPane.setRight(rightVBox);
+
+        buildingManagementBorderPane.setMinSize(1500, 900);
+
+        //buildingManagementBorderPane.setCenter(null);
+
+        buildingsForSellTableView.setMinWidth(650);
+        currentBuildingTableView.setMinWidth(650);
+
+
+
+        //Buy Button
+        Tooltip buyButtonTooltip = new Tooltip("Buy selected building.You can move there later.");
+        buyButton.setTooltip(buyButtonTooltip);
+
+        //Rent Button
+        Tooltip rentButtonTooltip = new Tooltip("Start renting this building.You can move there later.");
+        rentButton.setTooltip(rentButtonTooltip);
+
+        //Close Button
+        closeButton.setOnAction(event -> {
+            this.close();
+        });
     }
 
     private ObservableList<Building> createBuildingsForSale() {
