@@ -7,6 +7,8 @@ public class Corporation {
     private Integer money = 1000000; // Milion USD na zacatek
     private ArrayList<Facility> facilities = new ArrayList<>();
     private ArrayList<Employee> employees = new ArrayList<>();
+    private ArrayList<Room> rooms = new ArrayList<>();
+    //private
 
     public Corporation(String name) {
         this.name = name;

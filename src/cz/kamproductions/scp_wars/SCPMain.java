@@ -24,7 +24,7 @@ public class SCPMain extends Application {
         URL url = new File("src/cz/kamproductions/scp_wars/Game/UI/UI.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
 
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("SCP-Wars 0.0.1");
         primaryStage.setScene(new Scene(root, 1150, 820));
         primaryStage.show();
     }

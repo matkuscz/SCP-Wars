@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.kamproductions.scp_wars.Controller">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.kamproductions.scp_wars.Controller">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -32,7 +32,7 @@
         </Menu>
         <Menu mnemonicParsing="false" text="Help">
           <items>
-            <MenuItem mnemonicParsing="false" text="About SCP-Wars" />
+            <MenuItem fx:id="aboutMenuItem" mnemonicParsing="false" text="About SCP-Wars" />
           </items>
         </Menu>
       </menus>
@@ -44,25 +44,43 @@
             <Font size="18.0" />
           </font>
         </Label>
-            <HBox alignment="TOP_RIGHT" layoutX="881.0" layoutY="719.0" prefHeight="35.0" prefWidth="129.0">
+            <VBox layoutX="790.0" layoutY="601.0">
                <children>
-                  <Label text="TURN:">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="turn_value" text="0">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
+                  <HBox alignment="TOP_RIGHT" prefHeight="35.0" prefWidth="129.0">
+                     <children>
+                        <Label text="TURN:">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="turn_value" text="0">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="75.0">
+                     <children>
+                        <Label text="Year:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="year_value" text="2020">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
-            <VBox alignment="TOP_RIGHT" layoutX="747.0" layoutY="6.0" prefHeight="216.0" prefWidth="269.0">
+            </VBox>
+            <VBox alignment="TOP_RIGHT" layoutX="683.0" layoutY="6.0" prefHeight="216.0" prefWidth="333.0">
                <children>
                   <HBox alignment="TOP_RIGHT" prefHeight="55.0" prefWidth="202.0">
                      <children>
-                        <Label prefHeight="33.0" prefWidth="123.0" text="Balance ($$$)">
+                        <Label prefHeight="33.0" prefWidth="206.0" text="Balance ($$$)">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -82,6 +100,7 @@
                   <Font size="36.0" />
                </font>
             </Label>
+            <Button fx:id="buildingManagementButton" layoutX="15.0" layoutY="318.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="206.0" text="Building Management" />
       </children>
     </AnchorPane>
   </children>

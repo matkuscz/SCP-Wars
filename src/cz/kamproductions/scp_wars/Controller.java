@@ -1,10 +1,12 @@
 package cz.kamproductions.scp_wars;
 
+import cz.kamproductions.scp_wars.Game.Dialog.AboutGameCustomDialog;
 import cz.kamproductions.scp_wars.Game.Game;
 import cz.kamproductions.scp_wars.Game.Player;
+import cz.kamproductions.scp_wars.Game.UI.BuildingManagement.BuildingManagementDialogController;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.*;
 
 public class Controller {
     Player player = new Player("MTK");
@@ -18,13 +20,33 @@ public class Controller {
     Label corporation_name;
     @FXML
     Label balance_value;
+    @FXML
+    MenuItem aboutMenuItem;
+    @FXML
+    Label year_value;
+    @FXML
+    Button buildingManagementButton;
+
 
     @FXML
     private void initialize() {
+        aboutMenuItem.setOnAction(event -> {
+            AboutGameCustomDialog aboutGameCustomDialog = new AboutGameCustomDialog(null);
+            aboutGameCustomDialog.showAndWait();
+        });
+
+
         nextTurnButton.setOnAction(event -> {
             game.processTurn();
             render();
         });
+
+        buildingManagementButton.setOnAction(event -> {
+            BuildingManagementDialogController buildingManagementDialog = new BuildingManagementDialogController(null);
+            buildingManagementDialog.showAndWait();
+        });
+
+
 
         render();
     }
@@ -33,5 +55,6 @@ public class Controller {
         turn_value.setText(game.getTurn().toString());
         corporation_name.setText(game.getCorporation().getName());
         balance_value.setText(game.getCorporation().getMoney().toString());
+        year_value.setText(game.getYear().toString());
     }
 }
