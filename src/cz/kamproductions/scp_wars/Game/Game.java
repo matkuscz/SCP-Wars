@@ -1,7 +1,9 @@
 package cz.kamproductions.scp_wars.Game;
 
+import cz.kamproductions.scp_wars.Game.Dialog.CustomDialogController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -49,24 +51,7 @@ public class Game {
     }
 
     private void event() {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            //loader.setLocation(getClass().getResource("../UI/Dialog-Base.fxml"));
-
-
-            //URL url = new File("src/cz/kamproductions/scp_wars/Game/UI/Dialogs/Dialog-Base.fxml").toURI().toURL();
-            //Scene scene = new Scene(loader.load(url), 800, 600);
-
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/cz/kamproductions/scp_wars/Game/UI/Dialogs/CustomDialog.fxml"));
-
-            Scene scene = new Scene(fxmlLoader.load());
-
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();
-
-        } catch (IOException e) {
-            System.out.println(e);
-        }
+            CustomDialogController customDialogController = new CustomDialogController(null);
+            customDialogController.showAndWait();
     }
 }

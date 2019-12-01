@@ -34,7 +34,9 @@ public class SCPMain extends Application {
 
 
         // UTF-8 Bundle
-        ResourceBundle bundleCZUTF = ResourceBundle.getBundle("SCPWarsBundle", localeCz, new UTFControl());
+        //ResourceBundle bundleCZUTF = ResourceBundle.getBundle("SCPWarsBundle", localeCz, new UTFControl());
+
+        ResourceBundle bundleCZUTF = ResourceBundle.getBundle("SCPWarsBundle", localeEn, new UTFControl());
 
 
         // Start in English

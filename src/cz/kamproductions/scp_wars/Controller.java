@@ -6,12 +6,14 @@ import cz.kamproductions.scp_wars.Game.Player;
 import cz.kamproductions.scp_wars.Game.UI.BuildingManagement.BuildingManagementDialogController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.stage.Modality;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Controller {
+public class Controller implements Initializable {
     Player player = new Player("MTK");
     Game game = new Game(player);
 
@@ -33,11 +35,16 @@ public class Controller {
     private ResourceBundle bundle;
 
     @FXML
-    private void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources) {
+        System.out.println("Controller init started ...");
+
+
         bundle = resources;
 
         aboutMenuItem.setOnAction(event -> {
             AboutGameCustomDialog aboutGameCustomDialog = new AboutGameCustomDialog(null);
+            aboutGameCustomDialog.initModality(Modality.APPLICATION_MODAL);
+
             aboutGameCustomDialog.showAndWait();
         });
 
@@ -49,12 +56,16 @@ public class Controller {
 
         buildingManagementButton.setOnAction(event -> {
             BuildingManagementDialogController buildingManagementDialog = new BuildingManagementDialogController(null);
+            buildingManagementDialog.initModality(Modality.APPLICATION_MODAL);
+
             buildingManagementDialog.showAndWait();
         });
 
 
 
         render();
+
+        System.out.println("Controller init [OK]");
     }
 
     private void render() {
@@ -63,4 +74,6 @@ public class Controller {
         balance_value.setText(game.getCorporation().getMoney().toString());
         year_value.setText(game.getYear().toString());
     }
+
+
 }
