@@ -77,4 +77,20 @@ public class CustomOKCancelDialog extends Stage implements Initializable {
         super.showAndWait();
         return returnOK;
     }
+
+    public Button getOkButton() {
+        return okButton;
+    }
+
+    public void setOkButton(Button okButton) {
+        this.okButton = okButton;
+    }
+
+    public Button getCancelButton() {
+        return cancelButton;
+    }
+
+    public void setCancelButton(Button cancelButton) {
+        this.cancelButton = cancelButton;
+    }
 }

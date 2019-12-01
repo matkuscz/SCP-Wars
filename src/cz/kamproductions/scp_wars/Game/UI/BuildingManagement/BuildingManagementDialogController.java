@@ -39,6 +39,9 @@ public class BuildingManagementDialogController extends Stage implements Initial
 
     private Building selectedBuildingOnMarket = null;
 
+    private ObservableList<Building> buildingsForSellList;
+    private ObservableList<Building> currentPlayerBuildingsList;
+
 
     public BuildingManagementDialogController(Parent parent) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/cz/kamproductions/scp_wars/Game/UI/BuildingManagement/BuildingManagement-Base.fxml"));
@@ -110,7 +113,7 @@ public class BuildingManagementDialogController extends Stage implements Initial
     }
 
     private ObservableList<Building> createBuildingsForSale() {
-        ObservableList<Building> buildingsForSellList = FXCollections.observableArrayList();
+        buildingsForSellList = FXCollections.observableArrayList();
 
         Building b1 = new Building(new String("Building A"), new String("Prvni budova, co je k mani..."), 50, 12000, 250000);
         Building b2 = new Building(new String("Building B"), new String("Druha budova. Je trochu vetsi..."), 80, 24000, 400000);
@@ -122,10 +125,10 @@ public class BuildingManagementDialogController extends Stage implements Initial
     }
 
     private ObservableList<Building> getCurrentPlayerBuildings() {
-        ObservableList<Building> currentplayerBuildingsList = FXCollections.observableArrayList();
-        currentplayerBuildingsList.addAll(Game.getGameInstance().getCorporation().getBuildings());
+        currentPlayerBuildingsList = FXCollections.observableArrayList();
+        currentPlayerBuildingsList.addAll(Game.getGameInstance().getCorporation().getBuildings());
 
-        return currentplayerBuildingsList;
+        return currentPlayerBuildingsList;
     }
 
     private TableView<Building> CreateBuildingsForSellTableView() {
@@ -186,8 +189,8 @@ public class BuildingManagementDialogController extends Stage implements Initial
         yearRentPriceCol.setCellValueFactory(new PropertyValueFactory<Building, Integer>("yearRentPrice"));
         buyPriceCol.setCellValueFactory(new PropertyValueFactory<Building, Integer>("buyPrice"));
 
-        ObservableList<Building> buildingsForSellList = getCurrentPlayerBuildings();
-        currentBuildingTableView .setItems(buildingsForSellList);
+        ObservableList<Building> currentPlayerBuildings = getCurrentPlayerBuildings();
+        currentBuildingTableView .setItems(currentPlayerBuildings);
 
         return currentBuildingTableView;
     }
@@ -199,25 +202,45 @@ public class BuildingManagementDialogController extends Stage implements Initial
             if(selectedBuildingOnMarket != null) {
                 System.out.println("Buy button pressed");
 
-//                CustomDialogController testBuyBuildingDialog = new CustomDialogController(null);
-//                testBuyBuildingDialog.setTitle("Buy building");
-//                testBuyBuildingDialog.getDialogNameLabel().setText("Buy building");
-//                testBuyBuildingDialog.getDialogTextTextArea().setText(
-//                        "Are you sure?\n" +
-//                                "Costs: " + selectedBuildingOnMarket.getBuyPrice() + "\n" +
-//                                "You current balance: " + Game.getGameInstance().getCorporation().getMoney() + " $$$.\n");
-//
-//                testBuyBuildingDialog.showAndWait();
+                Integer currentMoney = Game.getGameInstance().getCorporation().getMoney();
+                Integer remainingMoney = currentMoney - selectedBuildingOnMarket.getBuyPrice();
 
                 CustomOKCancelDialog testBuyDialog = new CustomOKCancelDialog(null);
                 testBuyDialog.setTitle("Buy building");
                 testBuyDialog.getDialogNameLabel().setText("Buy building");
+
                 testBuyDialog.getDialogTextTextArea().setText(
                         "Are you sure?\n" +
-                                "Costs: " + selectedBuildingOnMarket.getBuyPrice() + "\n" +
-                                "You current balance: " + Game.getGameInstance().getCorporation().getMoney() + " $$$.\n");
+                                "Costs: " + selectedBuildingOnMarket.getBuyPrice() + " $$$\n" +
+                                "You current balance: " + Game.getGameInstance().getCorporation().getMoney() + " $$$.\n" +
+                                "Remaining funds: " + remainingMoney + " $$$");
 
-                System.out.println("Vysledek: " + testBuyDialog.showAndReturnValue());
+                if(remainingMoney >= 0) {
+                    testBuyDialog.getOkButton().setDisable(false);
+                } else {
+                    testBuyDialog.getOkButton().setDisable(true);
+                }
+
+                boolean buyOK = testBuyDialog.showAndReturnValue();
+                if(buyOK == true) {
+                    // Mame jenom prazdnou budovu?
+                    if(Game.getGameInstance().getCorporation().getBuildings().get(0).getName().equals("Nic")) {
+                        Game.getGameInstance().getCorporation().getBuildings().clear();
+                        Game.getGameInstance().getCorporation().getBuildings().add(selectedBuildingOnMarket);
+
+                        currentPlayerBuildingsList.clear();
+                        currentPlayerBuildingsList.add(selectedBuildingOnMarket);
+
+                        Game.getGameInstance().getCorporation();
+                        Game.getGameInstance().getCorporation().getMoney()
+                    } else {
+                        // Mame uz nejakou budovu
+                        Game.getGameInstance().getCorporation().getBuildings().add(selectedBuildingOnMarket);                        //getCurrentPlayerBuildings().add(selectedBuildingOnMarket);
+                        currentPlayerBuildingsList.add(selectedBuildingOnMarket);
+                    }
+                } else {
+
+                }
             }
         });
     }

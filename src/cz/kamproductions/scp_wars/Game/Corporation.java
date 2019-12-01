@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Corporation {
     private String name;
     private Integer money = 1000000; // Milion USD na zacatek
+    //private Integer money = 1000;
     private ArrayList<Facility> facilities = new ArrayList<>();
     private ArrayList<Employee> employees = new ArrayList<>();
     private ArrayList<Room> rooms = new ArrayList<>();
