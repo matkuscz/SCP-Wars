@@ -1,6 +1,9 @@
 package cz.kamproductions.scp_wars.Game.UI.BuildingManagement;
 
 import cz.kamproductions.scp_wars.Game.Building;
+import cz.kamproductions.scp_wars.Game.Dialog.CustomDialogController;
+import cz.kamproductions.scp_wars.Game.Dialog.CustomOKCancelDialog;
+import cz.kamproductions.scp_wars.Game.Game;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -34,6 +37,7 @@ public class BuildingManagementDialogController extends Stage implements Initial
     @FXML
     private Button marketReseachButton;
 
+    private Building selectedBuildingOnMarket = null;
 
 
     public BuildingManagementDialogController(Parent parent) {
@@ -51,54 +55,17 @@ public class BuildingManagementDialogController extends Stage implements Initial
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        // Prvni radek do tabulky - HEADER
-//        Label headerLabel = new Label("Your Building");
-//        VBox headerVBox = new VBox();
-//
-//        headerVBox.getChildren().add(headerLabel);
-//
-//        headerVBox.setAlignment(Pos.CENTER);
-//
-//        //headerVBox.getChildren().add(headerVBox);
-//        //currentBuildingTableView
-//
-//        TableColumn<String, String> tableColumnHeader = new TableColumn();
-//        tableColumnHeader.setGraphic(headerVBox);
-//
-//        TableColumn<Building, String> tableColumnName = new TableColumn<Building, String>("Name");
-//        //tableColumnName.setCellFactory();
+        rentButton.setDisable(true);
+        setupBuyButton();
 
 
-
-        //Moje budova - tabulka
-        TableView<Building> currentBuildingTableView = new TableView<>();
-
+        //Tvoje soucasna budova - tabulka
+        TableView<Building> currentBuildingTableView = CreateCurrentBuildingTableView();
 
         // Budovy ke koupi - tabulka
-        TableView<Building> buildingsForSellTableView = new TableView<>();
-
-        TableColumn<Building, String> nameCol = new TableColumn<>("Name");
-        TableColumn<Building, String> descriptionCol = new TableColumn<>("Description");
-        TableColumn<Building, Integer> areaCol = new TableColumn<>("Area (m2)");
-        TableColumn<Building, Integer> yearRentPriceCol = new TableColumn<>("Yearly Rent Price $");
-        TableColumn<Building, Integer> buyPriceCol = new TableColumn<>("Buy Price $");
-
-        buildingsForSellTableView.getColumns().clear();
-        buildingsForSellTableView.getColumns().addAll(nameCol, descriptionCol, areaCol, yearRentPriceCol, buyPriceCol);
-
-        nameCol.setCellValueFactory(new PropertyValueFactory<Building, String>("name"));
-        descriptionCol.setCellValueFactory(new PropertyValueFactory<Building, String>("description"));
-        areaCol.setCellValueFactory(new PropertyValueFactory<Building, Integer>("area"));
-        yearRentPriceCol.setCellValueFactory(new PropertyValueFactory<Building, Integer>("yearRentPrice"));
-        buyPriceCol.setCellValueFactory(new PropertyValueFactory<Building, Integer>("buyPrice"));
-
-
-        ObservableList<Building> buildingsForSellList = createBuildingsForSale();
-        buildingsForSellTableView.setItems(buildingsForSellList);
-
+        TableView<Building> buildingsForSellTableView = CreateBuildingsForSellTableView();
 
         // Pridani seznamu budov do Layoutu
-
         VBox leftVbox = new VBox();
         VBox rightVBox = new VBox();
 
@@ -152,5 +119,106 @@ public class BuildingManagementDialogController extends Stage implements Initial
         buildingsForSellList.add(b2);
 
         return buildingsForSellList;
+    }
+
+    private ObservableList<Building> getCurrentPlayerBuildings() {
+        ObservableList<Building> currentplayerBuildingsList = FXCollections.observableArrayList();
+        currentplayerBuildingsList.addAll(Game.getGameInstance().getCorporation().getBuildings());
+
+        return currentplayerBuildingsList;
+    }
+
+    private TableView<Building> CreateBuildingsForSellTableView() {
+        TableView<Building> buildingsForSellTableView = new TableView<>();
+
+        TableColumn<Building, String> nameCol = new TableColumn<>("Name");
+        TableColumn<Building, String> descriptionCol = new TableColumn<>("Description");
+        TableColumn<Building, Integer> areaCol = new TableColumn<>("Area (m2)");
+        TableColumn<Building, Integer> yearRentPriceCol = new TableColumn<>("Yearly Rent Price $");
+        TableColumn<Building, Integer> buyPriceCol = new TableColumn<>("Buy Price $");
+
+        buildingsForSellTableView.getColumns().clear();
+        buildingsForSellTableView.getColumns().addAll(nameCol, descriptionCol, areaCol, yearRentPriceCol, buyPriceCol);
+
+        nameCol.setCellValueFactory(new PropertyValueFactory<Building, String>("name"));
+        descriptionCol.setCellValueFactory(new PropertyValueFactory<Building, String>("description"));
+        areaCol.setCellValueFactory(new PropertyValueFactory<Building, Integer>("area"));
+        yearRentPriceCol.setCellValueFactory(new PropertyValueFactory<Building, Integer>("yearRentPrice"));
+        buyPriceCol.setCellValueFactory(new PropertyValueFactory<Building, Integer>("buyPrice"));
+
+
+        ObservableList<Building> buildingsForSellList = createBuildingsForSale();
+        buildingsForSellTableView.setItems(buildingsForSellList);
+
+        buildingsForSellTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            System.out.println(newValue);
+            if(newValue != null) {
+                rentButton.setDisable(false);
+                buyButton.setDisable(false);
+
+                selectedBuildingOnMarket = newValue;
+            } else {
+                rentButton.setDisable(true);
+                buyButton.setDisable(true);
+
+                selectedBuildingOnMarket = null;
+            }
+        });
+
+        return buildingsForSellTableView;
+    }
+
+    private TableView<Building> CreateCurrentBuildingTableView() {
+        TableView<Building> currentBuildingTableView = new TableView<>();
+
+        TableColumn<Building, String> nameCol = new TableColumn<>("Name");
+        TableColumn<Building, String> descriptionCol = new TableColumn<>("Description");
+        TableColumn<Building, Integer> areaCol = new TableColumn<>("Area (m2)");
+        TableColumn<Building, Integer> yearRentPriceCol = new TableColumn<>("Yearly Rent Price $");
+        TableColumn<Building, Integer> buyPriceCol = new TableColumn<>("Buy Price $");
+
+        currentBuildingTableView .getColumns().clear();
+        currentBuildingTableView .getColumns().addAll(nameCol, descriptionCol, areaCol, yearRentPriceCol, buyPriceCol);
+
+        nameCol.setCellValueFactory(new PropertyValueFactory<Building, String>("name"));
+        descriptionCol.setCellValueFactory(new PropertyValueFactory<Building, String>("description"));
+        areaCol.setCellValueFactory(new PropertyValueFactory<Building, Integer>("area"));
+        yearRentPriceCol.setCellValueFactory(new PropertyValueFactory<Building, Integer>("yearRentPrice"));
+        buyPriceCol.setCellValueFactory(new PropertyValueFactory<Building, Integer>("buyPrice"));
+
+        ObservableList<Building> buildingsForSellList = getCurrentPlayerBuildings();
+        currentBuildingTableView .setItems(buildingsForSellList);
+
+        return currentBuildingTableView;
+    }
+
+    private void setupBuyButton() {
+        buyButton.setDisable(true);
+
+        buyButton.setOnAction(event -> {
+            if(selectedBuildingOnMarket != null) {
+                System.out.println("Buy button pressed");
+
+//                CustomDialogController testBuyBuildingDialog = new CustomDialogController(null);
+//                testBuyBuildingDialog.setTitle("Buy building");
+//                testBuyBuildingDialog.getDialogNameLabel().setText("Buy building");
+//                testBuyBuildingDialog.getDialogTextTextArea().setText(
+//                        "Are you sure?\n" +
+//                                "Costs: " + selectedBuildingOnMarket.getBuyPrice() + "\n" +
+//                                "You current balance: " + Game.getGameInstance().getCorporation().getMoney() + " $$$.\n");
+//
+//                testBuyBuildingDialog.showAndWait();
+
+                CustomOKCancelDialog testBuyDialog = new CustomOKCancelDialog(null);
+                testBuyDialog.setTitle("Buy building");
+                testBuyDialog.getDialogNameLabel().setText("Buy building");
+                testBuyDialog.getDialogTextTextArea().setText(
+                        "Are you sure?\n" +
+                                "Costs: " + selectedBuildingOnMarket.getBuyPrice() + "\n" +
+                                "You current balance: " + Game.getGameInstance().getCorporation().getMoney() + " $$$.\n");
+
+                System.out.println("Vysledek: " + testBuyDialog.showAndReturnValue());
+            }
+        });
     }
 }

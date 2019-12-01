@@ -8,7 +8,7 @@ public class Corporation {
     private ArrayList<Facility> facilities = new ArrayList<>();
     private ArrayList<Employee> employees = new ArrayList<>();
     private ArrayList<Room> rooms = new ArrayList<>();
-    //private
+    private ArrayList<Building> buildings = new ArrayList<>();
 
     public Corporation(String name) {
         this.name = name;
@@ -44,5 +44,13 @@ public class Corporation {
 
     public Integer getMoney() {
         return money;
+    }
+
+    public ArrayList<Building> getBuildings() {
+        return buildings;
+    }
+
+    public void setBuildings(ArrayList<Building> buildings) {
+        this.buildings = buildings;
     }
 }

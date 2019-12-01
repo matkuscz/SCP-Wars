@@ -5,28 +5,31 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class CustomDialogController extends Stage implements Initializable {
+public class CustomOKCancelDialog extends Stage implements Initializable {
     @FXML
-    private Label DialogNameLabel;
-
-    @FXML
-    private TextArea DialogTextTextArea;
+    HBox buttonsHBox;
 
     @FXML
-    private Button okButton;
+    TextArea DialogTextTextArea;
 
+    @FXML
+    Label DialogNameLabel;
 
-    public CustomDialogController(Parent parent) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/cz/kamproductions/scp_wars/Game/UI/Dialogs/CustomDialog.fxml"));
+    @FXML
+    Button okButton, cancelButton;
+
+    private boolean returnOK = false;
+
+    public CustomOKCancelDialog(Parent parent) {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/cz/kamproductions/scp_wars/Game/UI/Dialogs/CustomOKCancelDialog.fxml"));
         fxmlLoader.setController(this);
 
         try{
@@ -42,12 +45,24 @@ public class CustomDialogController extends Stage implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         DialogTextTextArea.setEditable(false);
 
-        DialogTextTextArea.setText("QWEASDZXCCVBDFGERTTYGHVB");
-
-
         okButton.setOnAction(event -> {
+            returnOK = true;
             this.close();
         });
+
+        cancelButton.setOnAction(event -> {
+            returnOK = false;
+            this.close();
+        });
+    }
+
+
+    public TextArea getDialogTextTextArea() {
+        return DialogTextTextArea;
+    }
+
+    public void setDialogTextTextArea(TextArea dialogTextTextArea) {
+        DialogTextTextArea = dialogTextTextArea;
     }
 
     public Label getDialogNameLabel() {
@@ -58,11 +73,8 @@ public class CustomDialogController extends Stage implements Initializable {
         DialogNameLabel = dialogNameLabel;
     }
 
-    public TextArea getDialogTextTextArea() {
-        return DialogTextTextArea;
-    }
-
-    public void setDialogTextTextArea(TextArea dialogTextTextArea) {
-        DialogTextTextArea = dialogTextTextArea;
+    public boolean showAndReturnValue() {
+        super.showAndWait();
+        return returnOK;
     }
 }

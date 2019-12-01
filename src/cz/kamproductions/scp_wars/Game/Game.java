@@ -11,12 +11,15 @@ import java.io.IOException;
 import java.net.URL;
 
 public class Game {
+    private static Game gameInstance = null;
+
     private Integer turn = 0;
     private Integer StartingYear = 2020;
     private Integer year = 0;
     private Corporation corporation;
+    private Player player;
 
-    public Game(Player player) {
+    private Game() {
         createCorporation("KaM Studios");
         this.year = StartingYear;
         this.turn = 0;
@@ -53,5 +56,21 @@ public class Game {
     private void event() {
             CustomDialogController customDialogController = new CustomDialogController(null);
             customDialogController.showAndWait();
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public static Game getGameInstance() {
+        if(gameInstance == null) {
+            gameInstance = new Game();
+        }
+
+        return gameInstance;
     }
 }

@@ -1,5 +1,6 @@
 package cz.kamproductions.scp_wars;
 
+import cz.kamproductions.scp_wars.Game.Building;
 import cz.kamproductions.scp_wars.Game.Dialog.AboutGameCustomDialog;
 import cz.kamproductions.scp_wars.Game.Game;
 import cz.kamproductions.scp_wars.Game.Player;
@@ -11,12 +12,10 @@ import javafx.scene.control.*;
 import javafx.stage.Modality;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
-    Player player = new Player("MTK");
-    Game game = new Game(player);
-
     @FXML
     Button nextTurnButton;
     @FXML
@@ -38,6 +37,11 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("Controller init started ...");
 
+        Player player = new Player("MTK");
+
+        Game game = Game.getGameInstance();
+        game.setPlayer(player);
+        game.getCorporation().setBuildings(createDefaultBuildings());
 
         bundle = resources;
 
@@ -50,7 +54,7 @@ public class Controller implements Initializable {
 
 
         nextTurnButton.setOnAction(event -> {
-            game.processTurn();
+            Game.getGameInstance().processTurn();
             render();
         });
 
@@ -69,11 +73,17 @@ public class Controller implements Initializable {
     }
 
     private void render() {
-        turn_value.setText(game.getTurn().toString());
-        corporation_name.setText(game.getCorporation().getName());
-        balance_value.setText(game.getCorporation().getMoney().toString());
-        year_value.setText(game.getYear().toString());
+        turn_value.setText(Game.getGameInstance().getTurn().toString());
+        corporation_name.setText(Game.getGameInstance().getCorporation().getName());
+        balance_value.setText(Game.getGameInstance().getCorporation().getMoney().toString());
+        year_value.setText(Game.getGameInstance().getYear().toString());
     }
 
+    private ArrayList<Building> createDefaultBuildings() {
+        Building b1 = new Building("Nic", "Zadna budova", 0, 0, 0);
+        ArrayList<Building> buildings = new ArrayList<>();
+        buildings.add(b1);
 
+        return buildings;
+    }
 }
