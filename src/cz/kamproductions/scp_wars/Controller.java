@@ -69,10 +69,10 @@ public class Controller implements Initializable {
         System.out.println("Controller init [OK]");
 
         balance_value.textProperty().bind(Bindings.convert(Game.getGameInstance().getCorporation().moneyProperty()));
+        turn_value.textProperty().bind(Bindings.convert(Game.getGameInstance().turnProperty()));
     }
 
     private void render() {
-        turn_value.setText(Game.getGameInstance().getTurn().toString());
         corporation_name.setText(Game.getGameInstance().getCorporation().getName());
         year_value.setText(Game.getGameInstance().getYear().toString());
     }

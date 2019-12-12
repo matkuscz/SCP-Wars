@@ -1,28 +1,19 @@
 package cz.kamproductions.scp_wars.Game;
 
 import cz.kamproductions.scp_wars.Game.Dialog.CustomDialogController;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
+import javafx.beans.property.SimpleIntegerProperty;
 
 public class Game {
     private static Game gameInstance = null;
-
-    private Integer turn = 0;
     private Integer StartingYear = 2020;
     private Integer year = 0;
     private Corporation corporation;
     private Player player;
+    private SimpleIntegerProperty turn = new SimpleIntegerProperty(this, "turn", 0);
 
     private Game() {
         createCorporation("KaM Studios");
         this.year = StartingYear;
-        this.turn = 0;
     }
 
     public void processTurn(){
@@ -30,19 +21,16 @@ public class Game {
 
         event();
 
-        turn++;
         year++;
 
-        System.out.println("Turn " + turn);
+        turn.setValue(getTurn() + 1);
+
+        System.out.println("Turn " + getTurn());
     }
 
     private void createCorporation(String name) {
         Corporation corporation = new Corporation(name);
         this.corporation = corporation;
-    }
-
-    public Integer getTurn() {
-        return turn;
     }
 
     public Integer getYear() {
@@ -72,5 +60,17 @@ public class Game {
         }
 
         return gameInstance;
+    }
+
+    public int getTurn() {
+        return turn.get();
+    }
+
+    public SimpleIntegerProperty turnProperty() {
+        return turn;
+    }
+
+    public void setTurn(int turn) {
+        this.turn.set(turn);
     }
 }
