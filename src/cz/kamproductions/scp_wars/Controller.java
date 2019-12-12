@@ -75,7 +75,6 @@ public class Controller implements Initializable {
     private void render() {
         turn_value.setText(Game.getGameInstance().getTurn().toString());
         corporation_name.setText(Game.getGameInstance().getCorporation().getName());
-        balance_value.setText(Game.getGameInstance().getCorporation().getMoney().toString());
         year_value.setText(Game.getGameInstance().getYear().toString());
     }
 

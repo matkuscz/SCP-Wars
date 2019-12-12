@@ -238,7 +238,6 @@ public class BuildingManagementDialogController extends Stage implements Initial
                         currentPlayerBuildingsList.add(selectedBuildingOnMarket);
                     }
 
-                    Game.getGameInstance().getCorporation().setMoney(remainingMoney);
                     Game.getGameInstance().getCorporation().setMoneyProp(remainingMoney);
                 } else {
 
