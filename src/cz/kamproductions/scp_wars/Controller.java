@@ -5,6 +5,7 @@ import cz.kamproductions.scp_wars.Game.Dialog.AboutGameCustomDialog;
 import cz.kamproductions.scp_wars.Game.Game;
 import cz.kamproductions.scp_wars.Game.Player;
 import cz.kamproductions.scp_wars.Game.UI.BuildingManagement.BuildingManagementDialogController;
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -52,7 +53,6 @@ public class Controller implements Initializable {
             aboutGameCustomDialog.showAndWait();
         });
 
-
         nextTurnButton.setOnAction(event -> {
             Game.getGameInstance().processTurn();
             render();
@@ -65,11 +65,11 @@ public class Controller implements Initializable {
             buildingManagementDialog.showAndWait();
         });
 
-
-
         render();
 
         System.out.println("Controller init [OK]");
+
+        balance_value.textProperty().bind(Bindings.convert(Game.getGameInstance().getCorporation().moneyPropProperty()));
     }
 
     private void render() {

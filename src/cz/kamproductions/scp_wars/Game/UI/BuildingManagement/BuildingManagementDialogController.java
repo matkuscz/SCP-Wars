@@ -202,7 +202,9 @@ public class BuildingManagementDialogController extends Stage implements Initial
             if(selectedBuildingOnMarket != null) {
                 System.out.println("Buy button pressed");
 
-                Integer currentMoney = Game.getGameInstance().getCorporation().getMoney();
+                //Integer currentMoney = Game.getGameInstance().getCorporation().getMoney();
+                //Integer remainingMoney = currentMoney - selectedBuildingOnMarket.getBuyPrice();
+                Integer currentMoney = Game.getGameInstance().getCorporation().getMoneyProp();
                 Integer remainingMoney = currentMoney - selectedBuildingOnMarket.getBuyPrice();
 
                 CustomOKCancelDialog testBuyDialog = new CustomOKCancelDialog(null);
@@ -212,7 +214,7 @@ public class BuildingManagementDialogController extends Stage implements Initial
                 testBuyDialog.getDialogTextTextArea().setText(
                         "Are you sure?\n" +
                                 "Costs: " + selectedBuildingOnMarket.getBuyPrice() + " $$$\n" +
-                                "You current balance: " + Game.getGameInstance().getCorporation().getMoney() + " $$$.\n" +
+                                "You current balance: " + Game.getGameInstance().getCorporation().getMoneyProp() + " $$$.\n" +
                                 "Remaining funds: " + remainingMoney + " $$$");
 
                 if(remainingMoney >= 0) {
@@ -230,14 +232,14 @@ public class BuildingManagementDialogController extends Stage implements Initial
 
                         currentPlayerBuildingsList.clear();
                         currentPlayerBuildingsList.add(selectedBuildingOnMarket);
-
-                        Game.getGameInstance().getCorporation();
-                        Game.getGameInstance().getCorporation().getMoney()
                     } else {
                         // Mame uz nejakou budovu
                         Game.getGameInstance().getCorporation().getBuildings().add(selectedBuildingOnMarket);                        //getCurrentPlayerBuildings().add(selectedBuildingOnMarket);
                         currentPlayerBuildingsList.add(selectedBuildingOnMarket);
                     }
+
+                    Game.getGameInstance().getCorporation().setMoney(remainingMoney);
+                    Game.getGameInstance().getCorporation().setMoneyProp(remainingMoney);
                 } else {
 
                 }
