@@ -10,7 +10,7 @@ public class Corporation {
     private ArrayList<Employee> employees = new ArrayList<>();
     private ArrayList<Room> rooms = new ArrayList<>();
     private ArrayList<Building> buildings = new ArrayList<>();
-    private SimpleIntegerProperty moneyProp = new SimpleIntegerProperty(this, "money", 1000000);
+    private SimpleIntegerProperty money = new SimpleIntegerProperty(this, "money", 1000000);
 
     public Corporation(String name) {
         this.name = name;
@@ -27,7 +27,7 @@ public class Corporation {
             totalCosts += employee.getMaintenanceCost();
         }
 
-        moneyPropProperty().setValue(getMoneyProp() - totalCosts);
+        moneyProperty().setValue(getMoney() - totalCosts);
 
         System.out.println("Total costs: " + totalCosts);
     }
@@ -52,15 +52,15 @@ public class Corporation {
         this.buildings = buildings;
     }
 
-    public int getMoneyProp() {
-        return moneyProp.get();
+    public int getMoney() {
+        return money.get();
     }
 
-    public SimpleIntegerProperty moneyPropProperty() {
-        return moneyProp;
+    public SimpleIntegerProperty moneyProperty() {
+        return money;
     }
 
-    public void setMoneyProp(int moneyProp) {
-        this.moneyProp.set(moneyProp);
+    public void setMoney(int money) {
+        this.money.set(money);
     }
 }

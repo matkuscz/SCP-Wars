@@ -7,7 +7,6 @@ import cz.kamproductions.scp_wars.Game.Player;
 import cz.kamproductions.scp_wars.Game.UI.BuildingManagement.BuildingManagementDialogController;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
@@ -69,7 +68,7 @@ public class Controller implements Initializable {
 
         System.out.println("Controller init [OK]");
 
-        balance_value.textProperty().bind(Bindings.convert(Game.getGameInstance().getCorporation().moneyPropProperty()));
+        balance_value.textProperty().bind(Bindings.convert(Game.getGameInstance().getCorporation().moneyProperty()));
     }
 
     private void render() {

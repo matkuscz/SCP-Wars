@@ -1,7 +1,6 @@
 package cz.kamproductions.scp_wars.Game.UI.BuildingManagement;
 
 import cz.kamproductions.scp_wars.Game.Building;
-import cz.kamproductions.scp_wars.Game.Dialog.CustomDialogController;
 import cz.kamproductions.scp_wars.Game.Dialog.CustomOKCancelDialog;
 import cz.kamproductions.scp_wars.Game.Game;
 import javafx.collections.FXCollections;
@@ -204,7 +203,7 @@ public class BuildingManagementDialogController extends Stage implements Initial
 
                 //Integer currentMoney = Game.getGameInstance().getCorporation().getMoney();
                 //Integer remainingMoney = currentMoney - selectedBuildingOnMarket.getBuyPrice();
-                Integer currentMoney = Game.getGameInstance().getCorporation().getMoneyProp();
+                Integer currentMoney = Game.getGameInstance().getCorporation().getMoney();
                 Integer remainingMoney = currentMoney - selectedBuildingOnMarket.getBuyPrice();
 
                 CustomOKCancelDialog testBuyDialog = new CustomOKCancelDialog(null);
@@ -214,7 +213,7 @@ public class BuildingManagementDialogController extends Stage implements Initial
                 testBuyDialog.getDialogTextTextArea().setText(
                         "Are you sure?\n" +
                                 "Costs: " + selectedBuildingOnMarket.getBuyPrice() + " $$$\n" +
-                                "You current balance: " + Game.getGameInstance().getCorporation().getMoneyProp() + " $$$.\n" +
+                                "You current balance: " + Game.getGameInstance().getCorporation().getMoney() + " $$$.\n" +
                                 "Remaining funds: " + remainingMoney + " $$$");
 
                 if(remainingMoney >= 0) {
@@ -238,7 +237,7 @@ public class BuildingManagementDialogController extends Stage implements Initial
                         currentPlayerBuildingsList.add(selectedBuildingOnMarket);
                     }
 
-                    Game.getGameInstance().getCorporation().setMoneyProp(remainingMoney);
+                    Game.getGameInstance().getCorporation().setMoney(remainingMoney);
                 } else {
 
                 }
