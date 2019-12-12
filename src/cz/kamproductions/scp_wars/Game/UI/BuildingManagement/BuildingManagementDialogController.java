@@ -201,8 +201,6 @@ public class BuildingManagementDialogController extends Stage implements Initial
             if(selectedBuildingOnMarket != null) {
                 System.out.println("Buy button pressed");
 
-                //Integer currentMoney = Game.getGameInstance().getCorporation().getMoney();
-                //Integer remainingMoney = currentMoney - selectedBuildingOnMarket.getBuyPrice();
                 Integer currentMoney = Game.getGameInstance().getCorporation().getMoney();
                 Integer remainingMoney = currentMoney - selectedBuildingOnMarket.getBuyPrice();
 
