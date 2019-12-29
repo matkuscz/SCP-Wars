@@ -1,37 +1,95 @@
 package cz.kamproductions.scp_wars.Game;
 
-public class Employee {
-    public String getName() {
-        return name;
-    }
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.StringProperty;
 
-    public void setName(String name) {
+public class Employee {
+    private SimpleObjectProperty<EmployeeType> employeeType;
+    private StringProperty name;
+    private IntegerProperty maintenanceCost;
+
+    public Employee(SimpleObjectProperty<EmployeeType> employeeType, StringProperty name, IntegerProperty maintenanceCost) {
+        this.employeeType = employeeType;
         this.name = name;
+        this.maintenanceCost = maintenanceCost;
     }
 
     public EmployeeType getEmployeeType() {
+        return employeeType.get();
+    }
+
+    public SimpleObjectProperty<EmployeeType> employeeTypeProperty() {
         return employeeType;
     }
 
     public void setEmployeeType(EmployeeType employeeType) {
-        this.employeeType = employeeType;
+        this.employeeType.set(employeeType);
     }
 
-    public Integer getMaintenanceCost() {
+    public String getName() {
+        return name.get();
+    }
+
+    public StringProperty nameProperty() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name.set(name);
+    }
+
+    public int getMaintenanceCost() {
+        return maintenanceCost.get();
+    }
+
+    public IntegerProperty maintenanceCostProperty() {
         return maintenanceCost;
     }
 
-    public void setMaintenanceCost(Integer maintenanceCost) {
-        this.maintenanceCost = maintenanceCost;
+    public void setMaintenanceCost(int maintenanceCost) {
+        this.maintenanceCost.set(maintenanceCost);
     }
 
-    private String name;
-    private EmployeeType employeeType;
-    private Integer maintenanceCost;
+    //    public Employee(String name, EmployeeType employeeType, Integer maintenanceCost) {
+//        nameProperty.set(name);
+//        employeeTypeProperty.set(employeeType);
+//        maintenanceCostProperty.set(maintenanceCost);
+//    }
 
-    public Employee(String name, EmployeeType employeeType, Integer maintenanceCost) {
-        this.name = name;
-        this.employeeType = employeeType;
-        this.maintenanceCost = maintenanceCost;
-    }
+//    public EmployeeType getEmployeeTypeProperty() {
+//        return employeeTypeProperty.get();
+//    }
+//
+//    public SimpleObjectProperty<EmployeeType> employeeTypePropertyProperty() {
+//        return employeeTypeProperty;
+//    }
+//
+//    public void setEmployeeTypeProperty(EmployeeType employeeTypeProperty) {
+//        this.employeeTypeProperty.set(employeeTypeProperty);
+//    }
+//
+//    public String getNameProperty() {
+//        return nameProperty.get();
+//    }
+//
+//    public StringProperty namePropertyProperty() {
+//        return nameProperty;
+//    }
+//
+//    public void setNameProperty(String nameProperty) {
+//        this.nameProperty.set(nameProperty);
+//    }
+//
+//    public int getMaintenanceCostProperty() {
+//        return maintenanceCostProperty.get();
+//    }
+//
+//    public IntegerProperty maintenanceCostPropertyProperty() {
+//        return maintenanceCostProperty;
+//    }
+//
+//    public void setMaintenanceCostProperty(int maintenanceCostProperty) {
+//        this.maintenanceCostProperty.set(maintenanceCostProperty);
+//    }
 }

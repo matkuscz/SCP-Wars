@@ -1,19 +1,29 @@
 package cz.kamproductions.scp_wars.Game;
 
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 
 public class Corporation {
     private String name;
     private ArrayList<Facility> facilities = new ArrayList<>();
-    private ArrayList<Employee> employees = new ArrayList<>();
+
+    private ObservableList<Building> buildings;
+    private ObservableList<Employee> employees;
     private ArrayList<Room> rooms = new ArrayList<>();
-    private ArrayList<Building> buildings = new ArrayList<>();
+    //private ArrayList<Building> buildings = new ArrayList<>();
+
     private SimpleIntegerProperty money = new SimpleIntegerProperty(this, "money", 1000000);
 
     public Corporation(String name) {
         this.name = name;
+        ArrayList<Building> buildingsArray = new ArrayList<>();
+        buildings = FXCollections.observableArrayList(buildingsArray);
+
+        ArrayList<Employee> employeesArray = new ArrayList<>();
+        employees = FXCollections.observableArrayList(employeesArray);
     }
 
     public void processFinance() {
@@ -44,11 +54,20 @@ public class Corporation {
         return name;
     }
 
-    public ArrayList<Building> getBuildings() {
+//    public ArrayList<Building> getBuildings() {
+//        return buildings;
+//    }
+//
+//    public void setBuildings(ArrayList<Building> buildings) {
+//        this.buildings = buildings;
+//    }
+
+
+    public ObservableList<Building> getBuildings() {
         return buildings;
     }
 
-    public void setBuildings(ArrayList<Building> buildings) {
+    public void setBuildings(ObservableList<Building> buildings) {
         this.buildings = buildings;
     }
 

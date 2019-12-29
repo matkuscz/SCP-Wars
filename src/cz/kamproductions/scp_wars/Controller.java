@@ -5,7 +5,10 @@ import cz.kamproductions.scp_wars.Game.Dialog.AboutGameCustomDialog;
 import cz.kamproductions.scp_wars.Game.Game;
 import cz.kamproductions.scp_wars.Game.Player;
 import cz.kamproductions.scp_wars.Game.UI.BuildingManagement.BuildingManagementDialogController;
+import cz.kamproductions.scp_wars.Game.UI.HumanResources.HumanResourcesBaseUI;
 import javafx.beans.binding.Bindings;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -30,6 +33,9 @@ public class Controller implements Initializable {
     Label year_value;
     @FXML
     Button buildingManagementButton;
+    @FXML
+    Button humanResourcesButon;
+
 
     private ResourceBundle bundle;
 
@@ -64,6 +70,13 @@ public class Controller implements Initializable {
             buildingManagementDialog.showAndWait();
         });
 
+        humanResourcesButon.setOnAction(event -> {
+            HumanResourcesBaseUI humanResourcesBaseUI = new HumanResourcesBaseUI(null);
+            humanResourcesBaseUI.initModality(Modality.APPLICATION_MODAL);
+
+            humanResourcesBaseUI.showAndWait();
+        });
+
         render();
 
         System.out.println("Controller init [OK]");
@@ -77,11 +90,13 @@ public class Controller implements Initializable {
         year_value.setText(Game.getGameInstance().getYear().toString());
     }
 
-    private ArrayList<Building> createDefaultBuildings() {
+    private ObservableList<Building> createDefaultBuildings() {
         Building b1 = new Building("Nic", "Zadna budova", 0, 0, 0);
         ArrayList<Building> buildings = new ArrayList<>();
         buildings.add(b1);
 
-        return buildings;
+//        return buildings;
+
+        return FXCollections.observableArrayList(buildings);
     }
 }
