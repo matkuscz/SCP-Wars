@@ -47,7 +47,7 @@ public class HumanResourcesBaseUI extends Stage implements Initializable {
             e.printStackTrace();
         }
 
-        System.out.println("HR INIT INIT [OK]");
+        System.out.println("HR INIT [OK]");
 
         setupEmployeesForHireTableView();
         employeesForHireTableView.getItems().clear();
