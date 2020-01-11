@@ -24,6 +24,8 @@ public class Corporation {
 
         ArrayList<Employee> employeesArray = new ArrayList<>();
         employees = FXCollections.observableArrayList(employeesArray);
+        Employee ceo = new Employee(EmployeeType.ceo, "Matkus", 1);
+        employees.add(ceo);
     }
 
     public void processFinance() {
@@ -81,5 +83,13 @@ public class Corporation {
 
     public void setMoney(int money) {
         this.money.set(money);
+    }
+
+    public ObservableList<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(ObservableList<Employee> employees) {
+        this.employees = employees;
     }
 }

@@ -13,7 +13,7 @@
       <Label text="Human Resources" BorderPane.alignment="CENTER" />
    </top>
    <left>
-      <TableView fx:id="employeeTableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="currentEmployeesTableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
       </TableView>
    </left>
    <center>
@@ -24,4 +24,8 @@
          </children>
       </VBox>
    </center>
+   <right>
+      <TableView fx:id="employeesForHireTableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      </TableView>
+   </right>
 </BorderPane>

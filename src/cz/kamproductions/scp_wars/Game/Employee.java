@@ -1,18 +1,16 @@
 package cz.kamproductions.scp_wars.Game;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 
 public class Employee {
     private SimpleObjectProperty<EmployeeType> employeeType;
     private StringProperty name;
     private IntegerProperty maintenanceCost;
 
-    public Employee(SimpleObjectProperty<EmployeeType> employeeType, StringProperty name, IntegerProperty maintenanceCost) {
-        this.employeeType = employeeType;
-        this.name = name;
-        this.maintenanceCost = maintenanceCost;
+    public Employee(EmployeeType employeeType, String name, Integer maintenanceCost) {
+        this.employeeType = new SimpleObjectProperty<EmployeeType>(employeeType);
+        this.name = new SimpleStringProperty(name);
+        this.maintenanceCost = new SimpleIntegerProperty(maintenanceCost);
     }
 
     public EmployeeType getEmployeeType() {

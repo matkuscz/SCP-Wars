@@ -1,9 +1,7 @@
 package cz.kamproductions.scp_wars;
 
-import cz.kamproductions.scp_wars.Game.Building;
+import cz.kamproductions.scp_wars.Game.*;
 import cz.kamproductions.scp_wars.Game.Dialog.AboutGameCustomDialog;
-import cz.kamproductions.scp_wars.Game.Game;
-import cz.kamproductions.scp_wars.Game.Player;
 import cz.kamproductions.scp_wars.Game.UI.BuildingManagement.BuildingManagementDialogController;
 import cz.kamproductions.scp_wars.Game.UI.HumanResources.HumanResourcesBaseUI;
 import javafx.beans.binding.Bindings;
@@ -12,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 
 import java.net.URL;
@@ -34,8 +33,11 @@ public class Controller implements Initializable {
     @FXML
     Button buildingManagementButton;
     @FXML
-    Button humanResourcesButon;
-
+    Button humanResourcesButton;
+    @FXML
+    Button researchButton;
+    @FXML
+    StackPane researchButtonStackPane;
 
     private ResourceBundle bundle;
 
@@ -70,12 +72,16 @@ public class Controller implements Initializable {
             buildingManagementDialog.showAndWait();
         });
 
-        humanResourcesButon.setOnAction(event -> {
+        buildingManagementButton.setTooltip(new Tooltip("Rent/Buy/Sale buildings for your corporation..."));
+
+        humanResourcesButton.setOnAction(event -> {
             HumanResourcesBaseUI humanResourcesBaseUI = new HumanResourcesBaseUI(null);
             humanResourcesBaseUI.initModality(Modality.APPLICATION_MODAL);
 
             humanResourcesBaseUI.showAndWait();
         });
+
+        setupResearchButton();
 
         render();
 
@@ -98,5 +104,36 @@ public class Controller implements Initializable {
 //        return buildings;
 
         return FXCollections.observableArrayList(buildings);
+    }
+
+    private void setupResearchButton() {
+        //researchButton.setDisable(true);
+        researchButton.setTooltip(new Tooltip("You don't have any scientists..."));
+
+        researchButton.setOnAction(event -> {
+            ObservableList<Employee> seznam = Game.getGameInstance().getCorporation().getEmployees();
+
+            boolean doWeHaveScientist = false;
+
+            for(Employee e: seznam) {
+                if(e.getEmployeeType().equals(EmployeeType.science)) {
+                    doWeHaveScientist = true;
+                }
+            }
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+
+            if(doWeHaveScientist) {
+                alert.setTitle("Research ready to proceeed...");
+                alert.setContentText("Research ready to proceeed...");
+            } else {
+                alert.setTitle("You do not have any scientist...");
+                alert.setContentText("You do not have any scientist...");
+            }
+
+            alert.showAndWait();
+
+
+        });
     }
 }
