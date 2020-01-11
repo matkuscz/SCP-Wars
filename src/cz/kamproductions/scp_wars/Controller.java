@@ -3,6 +3,7 @@ package cz.kamproductions.scp_wars;
 import cz.kamproductions.scp_wars.Game.*;
 import cz.kamproductions.scp_wars.Game.Dialog.AboutGameCustomDialog;
 import cz.kamproductions.scp_wars.Game.UI.BuildingManagement.BuildingManagementDialogController;
+import cz.kamproductions.scp_wars.Game.UI.FacilitiesManagement.FacilitiesManagementBaseController;
 import cz.kamproductions.scp_wars.Game.UI.HumanResources.HumanResourcesBaseUI;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
@@ -38,6 +39,8 @@ public class Controller implements Initializable {
     Button researchButton;
     @FXML
     StackPane researchButtonStackPane;
+    @FXML
+    Button facilitiesManagementButton;
 
     private ResourceBundle bundle;
 
@@ -79,6 +82,11 @@ public class Controller implements Initializable {
             humanResourcesBaseUI.initModality(Modality.APPLICATION_MODAL);
 
             humanResourcesBaseUI.showAndWait();
+        });
+
+        facilitiesManagementButton.setOnAction(event -> {
+            FacilitiesManagementBaseController facilitiesManagementBaseController = new FacilitiesManagementBaseController(null);
+            facilitiesManagementBaseController.showAndWait();
         });
 
         setupResearchButton();

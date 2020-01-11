@@ -90,8 +90,9 @@
                </font>
             </Label>
             <Button fx:id="buildingManagementButton" layoutX="15.0" layoutY="318.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="206.0" text="Building Management" />
-            <Button fx:id="humanResourcesButton" layoutX="15.0" layoutY="391.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="206.0" text="Human Resources" />
-            <Button fx:id="researchButton" layoutX="15.0" layoutY="464.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="206.0" text="Research" />
+            <Button fx:id="humanResourcesButton" layoutX="15.0" layoutY="537.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="206.0" text="Human Resources" />
+            <Button fx:id="researchButton" layoutX="15.0" layoutY="610.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="206.0" text="Research" />
+            <Button fx:id="facilitiesManagementButton" layoutX="15.0" layoutY="384.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="206.0" text="Facilities Management" />
       </children>
     </AnchorPane>
   </children>

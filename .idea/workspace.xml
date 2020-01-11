@@ -2,13 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4314a1eb-826e-494e-b5c8-37581b4e099c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Game/UI/Endgame/GameOver-Base.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Game/UI/Endgame/GameOverController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Game/UI/FacilitiesManagement/FacilitiesManagement-BaseUI.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Game/UI/FacilitiesManagement/FacilitiesManagementBaseController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Game/Corporation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Game/Corporation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Game/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Game/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Game/EmployeeType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Game/EmployeeType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Game/UI/HumanResources/HumanResources-BaseUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Game/UI/HumanResources/HumanResources-BaseUI.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Game/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Game/UI/HumanResources/HumanResourcesBaseUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Game/UI/HumanResources/HumanResourcesBaseUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Game/UI/UI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Game/UI/UI.fxml" afterDir="false" />
     </list>

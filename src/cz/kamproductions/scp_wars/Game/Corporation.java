@@ -39,6 +39,9 @@ public class Corporation {
             totalCosts += employee.getMaintenanceCost();
         }
 
+        // Increase score by every cent above zero total worth
+        Game.getGameInstance().setScore(Game.getGameInstance().getScore() + totalCosts);
+
         moneyProperty().setValue(getMoney() - totalCosts);
 
         System.out.println("Total costs: " + totalCosts);

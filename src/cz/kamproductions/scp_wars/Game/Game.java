@@ -1,6 +1,7 @@
 package cz.kamproductions.scp_wars.Game;
 
 import cz.kamproductions.scp_wars.Game.Dialog.CustomDialogController;
+import cz.kamproductions.scp_wars.Game.UI.Endgame.GameOverController;
 import javafx.beans.property.SimpleIntegerProperty;
 
 public class Game {
@@ -10,6 +11,7 @@ public class Game {
     private Corporation corporation;
     private Player player;
     private SimpleIntegerProperty turn = new SimpleIntegerProperty(this, "turn", 0);
+    private SimpleIntegerProperty score = new SimpleIntegerProperty(this, "score", 0);
 
     private Game() {
         createCorporation("KaM Studios");
@@ -20,6 +22,10 @@ public class Game {
         corporation.processFinance();
 
         event();
+
+
+
+        checkForEndgameCondition();
 
         year++;
 
@@ -72,5 +78,26 @@ public class Game {
 
     public void setTurn(int turn) {
         this.turn.set(turn);
+    }
+
+    public int getScore() {
+        return score.get();
+    }
+
+    public SimpleIntegerProperty scoreProperty() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score.set(score);
+    }
+
+    private void checkForEndgameCondition() {
+        if(this.getCorporation().getMoney() < 0) {
+            System.out.println("Game Over");
+
+            GameOverController gameOverDialog = new GameOverController(null);
+            gameOverDialog.showAndWait();
+        }
     }
 }

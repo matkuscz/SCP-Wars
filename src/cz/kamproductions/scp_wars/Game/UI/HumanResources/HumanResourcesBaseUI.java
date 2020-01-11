@@ -97,18 +97,34 @@ public class HumanResourcesBaseUI extends Stage implements Initializable {
 
         hireButton.setOnAction(event -> {
             if(selectedEmployeeForHire != null) {
-                Alert hireConfirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
-                hireConfirmAlert.setTitle("Hire new employee");
-                hireConfirmAlert.setContentText("Really hire " + selectedEmployeeForHire.getName() +
-                        " for " + selectedEmployeeForHire.getMaintenanceCost() + " $$$ per month?");
+                int remainingMoney = Game.getGameInstance().getCorporation().getMoney() - selectedEmployeeForHire.getMaintenanceCost();
 
+                if(remainingMoney >= 0) {
+                    Alert hireConfirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+                    hireConfirmAlert.setTitle("Hire new employee");
+                    hireConfirmAlert.setContentText("Really hire " + selectedEmployeeForHire.getName() +
+                            " for " + selectedEmployeeForHire.getMaintenanceCost() + " $$$ per month?");
 
-
-                Optional<ButtonType> result = hireConfirmAlert.showAndWait();
-                if(result.isPresent() && result.get()==ButtonType.OK) {
-                    System.out.println("Najimame typka");
+                    Optional<ButtonType> result = hireConfirmAlert.showAndWait();
+                    if(result.isPresent() && result.get()==ButtonType.OK) {
+                        if(selectedEmployeeForHire != null) {
+                            System.out.println("Najimame typka");
+                            Game.getGameInstance().getCorporation().getEmployees().add(selectedEmployeeForHire);
+                            employeesForHire.remove(selectedEmployeeForHire);
+                            Game.getGameInstance().getCorporation().setMoney(remainingMoney);
+                            Game.getGameInstance().setScore(Game.getGameInstance().getScore() + selectedEmployeeForHire.getMaintenanceCost());
+                        }
+                    } else {
+                        System.out.println("Zruseno najimani typka");
+                    }
                 } else {
-                    System.out.println("Zruseno najimani typka");
+                    Alert notEnoughMoney = new Alert(Alert.AlertType.ERROR);
+                    notEnoughMoney.setTitle("Not enough money for hire");
+                    notEnoughMoney.setContentText("You don't have enough money to hire " +
+                            selectedEmployeeForHire.getName() + " for " + selectedEmployeeForHire.getMaintenanceCost() +
+                            " $$$. Current balance: " + Game.getGameInstance().getCorporation().getMoney() + " $$$." +
+                            " Remaining money would be: " + remainingMoney + " $$$.");
+                    notEnoughMoney.showAndWait();
                 }
             }
         });
