@@ -8,13 +8,10 @@ import java.util.ArrayList;
 
 public class Corporation {
     private String name;
-    private ArrayList<Facility> facilities = new ArrayList<>();
 
+    private ObservableList<Facility> facilities;
     private ObservableList<Building> buildings;
     private ObservableList<Employee> employees;
-    private ArrayList<Room> rooms = new ArrayList<>();
-    //private ArrayList<Building> buildings = new ArrayList<>();
-
     private SimpleIntegerProperty money = new SimpleIntegerProperty(this, "money", 1000000);
 
     public Corporation(String name) {
@@ -26,6 +23,9 @@ public class Corporation {
         employees = FXCollections.observableArrayList(employeesArray);
         Employee ceo = new Employee(EmployeeType.ceo, "Matkus", 1);
         employees.add(ceo);
+
+        ArrayList<Facility> facilitiesArray = new ArrayList<>();
+        facilities = FXCollections.observableArrayList(facilitiesArray);
     }
 
     public void processFinance() {
@@ -94,5 +94,13 @@ public class Corporation {
 
     public void setEmployees(ObservableList<Employee> employees) {
         this.employees = employees;
+    }
+
+    public ObservableList<Facility> getFacilities() {
+        return facilities;
+    }
+
+    public void setFacilities(ObservableList<Facility> facilities) {
+        this.facilities = facilities;
     }
 }

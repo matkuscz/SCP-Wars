@@ -105,7 +105,11 @@ public class Controller implements Initializable {
     }
 
     private ObservableList<Building> createDefaultBuildings() {
-        Building b1 = new Building("Nic", "Zadna budova", 0, 0, 0);
+        //Building b1 = new Building("Nic", "Zadna budova", 0, 0, 0);
+        // Cheat
+        Building b1 = new Building("Nacheatovana budova", "IDDQD", 666, 1,1);
+
+
         ArrayList<Building> buildings = new ArrayList<>();
         buildings.add(b1);
 

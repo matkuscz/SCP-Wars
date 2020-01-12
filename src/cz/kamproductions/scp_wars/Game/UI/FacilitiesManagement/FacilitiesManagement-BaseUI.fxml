@@ -32,15 +32,23 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Current Free Estate (m2):" />
-            <Label fx:id="freeEstateSpaceLabel" text="100" />
+            <Label text="Current Free Estate (m2):">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+            <VBox fx:id="estateDetailsVBox" prefHeight="200.0" prefWidth="100.0" />
+            <Label fx:id="freeEstateSpaceLabel" text="Total:">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
+            <Label fx:id="totalFreeEstateLabel" text="100" />
          </children>
       </VBox>
    </center>
    <left>
-      <HBox prefHeight="359.0" prefWidth="624.0" BorderPane.alignment="CENTER">
+      <HBox prefHeight="359.0" prefWidth="584.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="currentFacilitiesTableView" prefHeight="359.0" prefWidth="511.0">
+            <TableView fx:id="currentFacilitiesTableView" prefHeight="359.0" prefWidth="461.0">
               <columns>
                 <TableColumn prefWidth="75.0" text="C1" />
                 <TableColumn prefWidth="75.0" text="C2" />
@@ -53,7 +61,7 @@
                         <Insets bottom="5.0" top="5.0" />
                      </VBox.margin>
                   </Button>
-                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Build">
+                  <Button fx:id="buildButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="Build facility">
                      <VBox.margin>
                         <Insets bottom="5.0" top="5.0" />
                      </VBox.margin>

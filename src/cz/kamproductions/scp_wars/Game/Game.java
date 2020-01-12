@@ -16,6 +16,8 @@ public class Game {
     private Game() {
         createCorporation("KaM Studios");
         this.year = StartingYear;
+
+
     }
 
     public void processTurn(){
@@ -36,6 +38,8 @@ public class Game {
 
     private void createCorporation(String name) {
         Corporation corporation = new Corporation(name);
+
+
         this.corporation = corporation;
     }
 

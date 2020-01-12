@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -20,12 +21,15 @@ import java.util.ResourceBundle;
 
 public class FacilitiesManagementBaseController extends Stage implements Initializable {
     @FXML
-    private Label freeEstateSpaceLabel;
+    private Label totalFreeEstateLabel;
     @FXML
     private TableView<Facility> currentFacilitiesTableView;
-
+    @FXML
+    private Button buildButton;
     @FXML
     Button destroyFacilityButton;
+    @FXML
+    VBox estateDetailsVBox;
 
     private Facility selectedFacility;
 
@@ -51,9 +55,16 @@ public class FacilitiesManagementBaseController extends Stage implements Initial
             totalFreeSpace += b.getArea();
         }
 
-        freeEstateSpaceLabel.setText(totalFreeSpace + " m2");
+        totalFreeEstateLabel.setText(totalFreeSpace + " m2");
 
         setupCurrentFacilitiesTableView();
+
+        buildButton.setOnAction(event -> {
+            FacilitiesManagementBuildNewController facilitiesManagementBuildNewController = new FacilitiesManagementBuildNewController(null);
+            facilitiesManagementBuildNewController.showAndWait();
+        });
+
+        calculateAndDisplayFreeRealEstate();
 
         System.out.println("Facilities INIT [OK]");
     }
@@ -92,20 +103,36 @@ public class FacilitiesManagementBaseController extends Stage implements Initial
         });
 
         currentFacilitiesTableView.getItems().clear();
-        currentFacilitiesTableView.getItems().addAll(createFacilitiesToBuild());
+
+        currentFacilitiesTableView.setItems(Game.getGameInstance().getCorporation().getFacilities());
 
         destroyFacilityButton.setDisable(true);
     }
 
-    private ObservableList<Facility> createFacilitiesToBuild() {
-        ObservableList<Facility> facilities = FXCollections.observableArrayList();
+    private void calculateAndDisplayFreeRealEstate() {
+        Label bHead = new Label("Buildings:");
+        estateDetailsVBox.getChildren().add(bHead);
 
-        Laboratory lab = new Laboratory("Laborka", 5000, 50000, "Basic small lab.Provides research.", 25);
-        Armory armory = new Armory("Zbrojirna", 2000, 10000, "Small armory. You can equip your soldiers here.", 50);
+        int totalFreeEstate = 0;
+        for(Building b : Game.getGameInstance().getCorporation().getBuildings()) {
+            totalFreeEstate += b.getArea();
 
-        facilities.add(lab);
-        facilities.add(armory);
+            Label bL = new Label("Building " + b.getName() + " - area " + b.getArea() + " m2");
+            estateDetailsVBox.getChildren().add(bL);
+        }
 
-        return facilities;
+        int totalOccupiedFreeEstate = 0;
+        Label facHead = new Label("Facilities:");
+        estateDetailsVBox.getChildren().add(facHead);
+        for(Facility f : Game.getGameInstance().getCorporation().getFacilities()) {
+            totalOccupiedFreeEstate += f.getRequiredSpace();
+            Label fL = new Label("Facility: " + f.getName() + " - area " + f.getRequiredSpace() + " m2");
+            estateDetailsVBox.getChildren().add(fL);
+        }
+
+        int remainingFreeRealEstate = 0;
+        remainingFreeRealEstate = totalFreeEstate - totalOccupiedFreeEstate;
+
+        totalFreeEstateLabel.setText(remainingFreeRealEstate + " m2");
     }
 }

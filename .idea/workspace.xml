@@ -2,13 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4314a1eb-826e-494e-b5c8-37581b4e099c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Game/Armory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Game/Laboratory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Game/UI/FacilitiesManagement/FacilitiesManagement-BuildNew.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Game/UI/FacilitiesManagement/FacilitiesManagementBuildNewController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Game/Facility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Game/Facility.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Game/Corporation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Game/Corporation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Game/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Game/UI/BuildingManagement/BuildingManagementDialogController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Game/UI/BuildingManagement/BuildingManagementDialogController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Game/UI/FacilitiesManagement/FacilitiesManagement-BaseUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Game/UI/FacilitiesManagement/FacilitiesManagement-BaseUI.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Game/UI/FacilitiesManagement/FacilitiesManagementBaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Game/UI/FacilitiesManagement/FacilitiesManagementBaseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Game/UI/HumanResources/HumanResourcesBaseUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cz/kamproductions/scp_wars/Game/UI/HumanResources/HumanResourcesBaseUI.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

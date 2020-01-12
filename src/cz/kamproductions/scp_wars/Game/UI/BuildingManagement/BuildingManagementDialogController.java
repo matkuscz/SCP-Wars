@@ -62,7 +62,7 @@ public class BuildingManagementDialogController extends Stage implements Initial
 
 
         //Tvoje soucasna budova - tabulka
-        TableView<Building> currentBuildingTableView = CreateCurrentBuildingTableView();
+        TableView<Building> currentBuildingTableView = createCurrentBuildingTableView();
 
         // Budovy ke koupi - tabulka
         TableView<Building> buildingsForSellTableView = CreateBuildingsForSellTableView();
@@ -94,6 +94,8 @@ public class BuildingManagementDialogController extends Stage implements Initial
 
         buildingsForSellTableView.setMinWidth(650);
         currentBuildingTableView.setMinWidth(650);
+
+
 
 
 
@@ -170,7 +172,7 @@ public class BuildingManagementDialogController extends Stage implements Initial
         return buildingsForSellTableView;
     }
 
-    private TableView<Building> CreateCurrentBuildingTableView() {
+    private TableView<Building> createCurrentBuildingTableView() {
         TableView<Building> currentBuildingTableView = new TableView<>();
 
         TableColumn<Building, String> nameCol = new TableColumn<>("Name");
