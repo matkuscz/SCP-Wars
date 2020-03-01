@@ -90,9 +90,18 @@
                </font>
             </Label>
             <Button fx:id="buildingManagementButton" layoutX="15.0" layoutY="318.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="206.0" text="Building Management" />
-            <Button fx:id="humanResourcesButton" layoutX="15.0" layoutY="537.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="206.0" text="Human Resources" />
+            <Button fx:id="humanResourcesButton" layoutX="15.0" layoutY="450.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="206.0" text="Human Resources" />
             <Button fx:id="researchButton" layoutX="15.0" layoutY="610.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="206.0" text="Research" />
             <Button fx:id="facilitiesManagementButton" layoutX="15.0" layoutY="384.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="206.0" text="Facilities Management" />
+            <VBox layoutX="304.0" layoutY="350.0" prefHeight="230.0" prefWidth="220.0">
+               <children>
+                  <Label text="Facilities :">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
       </children>
     </AnchorPane>
   </children>

@@ -28,6 +28,8 @@ public class Game {
 
 
         checkForEndgameCondition();
+        showEndTurnSummary();
+
 
         year++;
 
@@ -103,5 +105,9 @@ public class Game {
             GameOverController gameOverDialog = new GameOverController(null);
             gameOverDialog.showAndWait();
         }
+    }
+
+    private void showEndTurnSummary() {
+
     }
 }
